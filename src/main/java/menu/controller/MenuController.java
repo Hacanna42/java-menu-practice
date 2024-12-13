@@ -1,9 +1,7 @@
 package menu.controller;
 
 import java.util.List;
-import java.util.Map;
 import menu.domain.Coach;
-import menu.domain.enums.DayOfWeek;
 import menu.domain.enums.Food;
 import menu.dto.RecommendResultDto;
 import menu.service.MenuService;

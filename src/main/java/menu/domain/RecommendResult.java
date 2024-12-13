@@ -51,7 +51,8 @@ public class RecommendResult {
         List<String> selectedCategoryNames = new ArrayList<>();
         for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
             if (!recommendResult.containsKey(dayOfWeek)) {
-                throw new IllegalArgumentException("정상적인 동작이 아닙니다. getSelectedCategories() 메서드는 추천 결과가 모두 완성되었을 때 호출되어야 합니다.");
+                throw new IllegalArgumentException(
+                        "정상적인 동작이 아닙니다. getSelectedCategories() 메서드는 추천 결과가 모두 완성되었을 때 호출되어야 합니다.");
             }
 
             FoodCategory selectedFoodCategory = getFoodCategoryFrom(recommendResult.get(dayOfWeek));
