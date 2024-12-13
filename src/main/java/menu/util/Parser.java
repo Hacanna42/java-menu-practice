@@ -21,6 +21,10 @@ public class Parser {
     }
 
     public static List<Food> parseMenus(String input) {
+        if (input.isEmpty()) {
+            return new ArrayList<>();
+        }
+
         List<String> menuNames = List.of(input.split(","));
         List<Food> foods = new ArrayList<>();
 
