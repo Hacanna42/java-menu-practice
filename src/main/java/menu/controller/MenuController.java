@@ -1,8 +1,11 @@
 package menu.controller;
 
 import java.util.List;
+import java.util.Map;
 import menu.domain.Coach;
+import menu.domain.enums.DayOfWeek;
 import menu.domain.enums.Food;
+import menu.dto.RecommendResultDto;
 import menu.service.MenuService;
 import menu.util.Parser;
 import menu.view.InputView;
@@ -19,7 +22,8 @@ public class MenuController {
         OutputView.printStartServiceMessage();
         List<Coach> coaches = getCoaches();
         coaches.forEach(coach -> coach.addHateFoods(getHateFood(coach)));
-        menuService.processRecommend(coaches);
+        RecommendResultDto recommendResultDto = menuService.processRecommend(coaches);
+        OutputView.printResult(recommendResultDto);
     }
 
     private List<Coach> getCoaches() {
@@ -33,6 +37,12 @@ public class MenuController {
     }
 
     private List<Food> getHateFood(Coach coach) {
-        return Parser.parseMenus(InputView.getHateMenusName(coach.getName()));
+        while (true) {
+            try {
+                return Parser.parseMenus(InputView.getHateMenusName(coach.getName()));
+            } catch (IllegalArgumentException exception) {
+                OutputView.printErrorMessage(exception.getMessage());
+            }
+        }
     }
 }
