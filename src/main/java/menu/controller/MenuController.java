@@ -19,7 +19,7 @@ public class MenuController {
     public void run() {
         OutputView.printStartServiceMessage();
         List<Coach> coaches = getCoaches();
-        coaches.forEach(coach -> coach.addHateFoods(getHateFood(coach)));
+        applyHateFoods(coaches);
         RecommendResultDto recommendResultDto = menuService.processRecommend(coaches);
         OutputView.printResult(recommendResultDto);
     }
@@ -32,6 +32,10 @@ public class MenuController {
                 OutputView.printErrorMessage(exception.getMessage());
             }
         }
+    }
+
+    private void applyHateFoods(List<Coach> coaches) {
+        coaches.forEach(coach -> coach.addHateFoods(getHateFood(coach)));
     }
 
     private List<Food> getHateFood(Coach coach) {
