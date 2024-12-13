@@ -19,6 +19,10 @@ public class Coach {
         return new Coach(name, new ArrayList<>());
     }
 
+    public boolean canApplyFood(Food food) {
+        return !hateFoods.contains(food);
+    }
+
     public void addHateFoods(List<Food> hateFoods) {
         this.hateFoods.addAll(hateFoods);
     }

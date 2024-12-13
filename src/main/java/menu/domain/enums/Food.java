@@ -1,5 +1,10 @@
 package menu.domain.enums;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Food {
     // JAPANESE
     GYUDONG("규동", FoodCategory.JAPANESE),
@@ -71,5 +76,21 @@ public enum Food {
         }
 
         throw new IllegalArgumentException("같은 이름의 메뉴를 찾을 수 없습니다.");
+    }
+
+    public static Food pickRandomFrom(FoodCategory foodCategory) {
+        List<Food> targetFoods = Arrays.stream(Food.values()).
+                filter(food -> food.foodCategory.equals(foodCategory)).
+                collect(Collectors.toList());
+
+        return Randoms.shuffle(targetFoods).get(0);
+    }
+
+    public FoodCategory getFoodCategory() {
+        return foodCategory;
+    }
+
+    public String getName() {
+        return name;
     }
 }
